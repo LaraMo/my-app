@@ -5,16 +5,23 @@ export const colors = {
   tertiary: "#D6E5FA",
   quaternary: "#FFF9F9",
   //darks
-  primaryDark: "#577BC1",
-  secondaryDark: "#5C7AEA",
-  tertiaryDark: "#4D59B5",
-  quaternaryDark: "#916BBF",
+  darkPrimary: "#22345d",
+  darkSecondary: "#577BC1",
+  darkTertiary: "#435fa0",
+  darkQuaternary: "#4D59B5",
   //text
-  textDark: "#142F43",
-  textLight: "#E6E6E6",
+  darkText: "#142F43",
+  lightText: "#E6E6E6",
+  darkSpanText: "#d9d9d9",
+  lightSpanText: "rgb(110, 70, 219)",
+  lightAccentText: "palevioletred",
+  darkAccentText: "#e5beed",
   //bg
-  darkBackground: "#3D56B2",
+  darkBackground: "#121e3b",
   lightBackground: "#f1f1f1",
-  //accent
+  darkAccentBackground: "#00406c",
+  lightAccentBackground: "#ffd3d3",
+
+  //generic acccent
   accentText: "gray",
 };

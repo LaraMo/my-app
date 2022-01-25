@@ -1,65 +1,65 @@
 //projects
-import medium from "./assets/medium.png";
-import memcaps from "./assets/memcaps.png";
+import medium from "../assets/medium.png";
+import memcaps from "../assets/memcaps.png";
 //workplaces
-import bombardier from "./assets/bombardier.jpeg";
-import nep from "./assets/nep.png";
-import nespresso from "./assets/nespresso.jpeg";
-import newton from "./assets/newton.png";
+import bombardier from "../assets/bombardier.jpeg";
+import nep from "../assets/nep.png";
+import nespresso from "../assets/nespresso.jpeg";
+import newton from "../assets/newton.png";
 
 //schools
-import concordia from "./assets/concordia.png";
-import dawson from "./assets/dawson.png";
+import concordia from "../assets/concordia.png";
+import dawson from "../assets/dawson.png";
 import moment from "moment";
-import { colors } from "./styles/colors";
+import { colors } from "../styles/colors";
 
 //social media
-import discord from "./assets/discord.png";
-import linkedin from "./assets/linkedin.png";
-import facebook from "./assets/facebook.png";
-import gmail from "./assets/gmail.png";
-import instagram from "./assets/instagram.png";
+import discord from "../assets/discord.png";
+import linkedin from "../assets/linkedin.png";
+import facebook from "../assets/facebook.png";
+import gmail from "../assets/gmail.png";
+import instagram from "../assets/instagram.png";
 
 export const headings = [
   {
-    name: "About Me",
+    name: "aboutMe.title",
     id: "aboutMe",
-    color: { dark: colors.primaryDark, light: colors.primary },
+    color: { dark: colors.darkPrimary, light: colors.primary },
   },
   {
-    name: "Projects",
+    name: "projects.title",
     id: "projects",
-    color: { dark: colors.secondaryDark, light: colors.secondary },
+    color: { dark: colors.darkSecondary, light: colors.secondary },
   },
   {
-    name: "Work",
+    name: "workplaces.title",
     id: "workplaces",
-    color: { dark: colors.tertiaryDark, light: colors.tertiary },
+    color: { dark: colors.darkTertiary, light: colors.tertiary },
   },
   {
-    name: "Education",
+    name: "education.title",
     id: "education",
-    color: { dark: colors.quaternaryDark, light: colors.quaternary },
+    color: { dark: colors.darkQuaternary, light: colors.quaternary },
   },
 ];
 export const projects = [
   {
-    title: "Medium Writer",
-    startDate: moment("01/12/2021").format("MMM/DD/YYYY"),
-    endDate: undefined,
-    desc: "Write articles about various JS topics",
-    link: "https://medium.com/@laramo",
-    img: medium,
-    emoji: "📝",
-  },
-  {
     title: "Memcaps",
     startDate: moment("01/12/2021").format("MMM/DD/YYYY"),
     endDate: undefined,
-    desc: "Sharable gallery app",
+    desc: "projects.memcaps.desc",
     link: "https://medium.com/@laramo",
     img: memcaps,
     emoji: "📷",
+  },
+  {
+    title: "projects.medium.title",
+    startDate: moment("01/12/2021").format("MMM/DD/YYYY"),
+    endDate: undefined,
+    desc: "projects.medium.desc",
+    link: "https://medium.com/@laramo",
+    img: medium,
+    emoji: "📝",
   },
 ];
 
@@ -68,7 +68,7 @@ export const workplaces = [
     title: "Bombardier",
     startDate: moment("01/09/2020").format("MMM/DD/YYYY"),
     endDate: undefined,
-    desc: "Working on ReactNative mobile application, shared component library and sales website using React",
+    desc: "workplaces.bombardier.desc",
     link: "https://bombardier.com/en",
     img: bombardier,
     emoji: "✈️",
@@ -77,7 +77,7 @@ export const workplaces = [
     title: "Neptronic",
     startDate: moment("01/05/2019").format("MMM/DD/YYYY"),
     endDate: moment("01/09/2020").format("MMM/DD/YYYY"),
-    desc: "Working on internal software using C# and React",
+    desc: "workplaces.neptronic.desc",
     link: "https://www.neptronic.com/",
     img: nep,
     emoji: "🏭",
@@ -86,7 +86,7 @@ export const workplaces = [
     title: "Nespresso",
     startDate: moment("01/05/2019").format("MMM/DD/YYYY"),
     endDate: moment("01/09/2020").format("MMM/DD/YYYY"),
-    desc: "Sales representetive showcasing coffee machines",
+    desc: "workplaces.nespresso.desc",
     link: "https://www.nespresso.com/ca/en/",
     img: nespresso,
     emoji: "☕",
@@ -95,37 +95,37 @@ export const workplaces = [
     title: "Newton",
     startDate: moment("01/05/2019").format("MMM/DD/YYYY"),
     endDate: moment("01/09/2020").format("MMM/DD/YYYY"),
-    desc: "Work on website using React.js",
+    desc: "workplaces.newton.desc",
     link: "https://www.newton.co/",
     img: newton,
     emoji: "💸",
   },
 ];
 
-export const schools = [
+export const education = [
   {
-    title: "Concordia University",
+    title: "education.concordia",
     startDate: moment("01/08/2019").format("MMM/DD/YYYY"),
     endDate: undefined,
-    desc: "Bachlor's of Computer Science",
+    desc: "education.concordiaDesc",
     link: "https://www.concordia.ca/",
     img: concordia,
   },
   {
-    title: "Dawson College",
+    title: "education.dawson",
     startDate: moment("01/08/2016").format("MMM/DD/YYYY"),
     endDate: moment("01/09/2019").format("MMM/DD/YYYY"),
-    desc: "DEC of computer science",
+    desc: "education.dawsonDesc",
     link: "https://www.dawsoncollege.qc.ca/",
     img: dawson,
   },
 ];
 
 export const facts = [
-  "I love coffee so much",
-  "I speak English, French, Russian and Hebrew",
-  "I am part of the 1-2% of the unique population; redheads. ",
-  "I am not Irish.",
+  "aboutMe.fact1",
+  "aboutMe.fact2",
+  "aboutMe.fact3",
+  "aboutMe.fact4",
 ];
 
 export const specialties = [
@@ -133,12 +133,10 @@ export const specialties = [
   "React.js",
   "React Native",
   "CSS/SASS",
-  ,
   "TypeScript",
   "Git",
   "Linux",
   "Windows",
-  ,
   "SQL",
   "HTML5",
   "Java",

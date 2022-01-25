@@ -1,5 +1,4 @@
-import { cp } from "fs/promises";
-import React, { ReactNode, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../../context/theme";
 import { colors } from "../../styles/colors";
@@ -9,13 +8,13 @@ type IProps = {
   color?: string;
   size?: string; //todo: make size
   bold?: boolean;
-  specialFont?: boolean;
+  style?: any;
 };
 const Text = (props: IProps) => {
-  const { color, size, children, bold } = props;
-  const { isDark, setTheme } = useContext(ThemeContext);
+  const { color, size, children, bold, style } = props;
+  const { isDark } = useContext(ThemeContext);
   return (
-    <Div isDark={isDark} color={color} size={size}>
+    <Div style={style} isDark={isDark} bold={bold} color={color} size={size}>
       {children}
     </Div>
   );
@@ -26,19 +25,15 @@ const Div = styled.p<{
   color?: string;
   size?: string;
   bold?: boolean;
-  specialFont?: boolean;
 }>`
   color: ${(props) =>
     props.color
       ? props.color
       : props.isDark
-      ? colors.textLight
-      : colors.textDark};
+      ? colors.lightText
+      : colors.darkText};
   font-weight: ${(props) => (props.bold ? "bold" : "normal")};
-  /* font-family: ${(props) => (props.specialFont ? "Open Sans" : "Cookie")}; */
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
+  font-size: ${(props) => (props.size ? props.size : "16px")};
   font-family: "Outfit", sans-serif;
 `;
 export default Text;

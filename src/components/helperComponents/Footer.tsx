@@ -2,24 +2,35 @@ import React, { useContext } from "react";
 import moment from "moment";
 import Text from "../atoms/Text";
 import { ThemeContext } from "../../context/theme";
-import { socialMedia } from "../../const";
+import { socialMedia } from "../../const/const";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 const Footer = () => {
   const { isDark } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   return (
     <Container>
       <div>
         {socialMedia.map((x, key) => {
           return (
-            <Link href={x.siteUrl}>
-              <img width="50px" height="50px" key={key} src={x.imgUrl} />
+            <Link key={key} href={x.siteUrl}>
+              <img
+                alt="footerImg"
+                width="50px"
+                height="50px"
+                key={key}
+                src={x.imgUrl}
+              />
             </Link>
           );
         })}
       </div>
-
-      <Text>{`${isDark ? "🤍" : "💜"} My by LaraMo ©${moment().year()}`}</Text>
+      <Text>
+        {t("footer.title", {
+          icon: isDark ? "🤍" : "💜",
+          year: moment().year(),
+        })}
+      </Text>
     </Container>
   );
 };
@@ -38,12 +49,7 @@ const Link = styled.a`
   &:hover {
     cursor: pointer;
     > img {
-      /* Start the shake animation and make the animation last for 0.5 seconds */
-      animation: shake 1.3s;
-
-      /* When the animation is finished, start again */
-      animation-iteration-count: infinite;
-
+      animation: shake 1.3s infinite;
       @keyframes shake {
         0% {
           transform: translate(1px, 1px) rotate(0deg);

@@ -1,28 +1,32 @@
 import React, { ReactNode } from "react";
-import Toggle from "react-toggle";
+import Switch from "react-switch";
 import styled from "styled-components";
+import { colors } from "../../styles/colors";
 import Text from "./Text";
 
 type IProps = {
   state: boolean;
-  iconChecked: ReactNode;
-  iconUnchecked: ReactNode;
   setState: any; //todo
-  label: string;
+  label?: string;
+  uncheckedIcon: any; //todo
+  checkedIcon: any; //todo
 };
 const ToggleButton = (props: IProps) => {
-  const { state, iconChecked, iconUnchecked, setState, label } = props;
+  const { state, uncheckedIcon, checkedIcon, setState, label } = props;
   return (
     <Div>
-      <Text>{label}</Text>
-      <Toggle
-        defaultChecked={state}
-        icons={{
-          checked: iconChecked,
-          unchecked: iconUnchecked,
-        }}
-        onChange={setState}
+      {label && <Text>{label}</Text>}
+      <Switch
+      onChange={setState}
+      checked={state}
+      offHandleColor={colors.lightAccentBackground}
+      onHandleColor={colors.darkAccentBackground}
+      offColor={colors.darkAccentBackground}
+      onColor={colors.lightAccentBackground}
+      checkedIcon={checkedIcon}
+      uncheckedIcon={uncheckedIcon}
       />
+    
     </Div>
   );
 };
