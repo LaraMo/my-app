@@ -1,35 +1,17 @@
-import React, { ReactNode, useContext } from "react";
-import styled from "styled-components";
-import { ThemeContext } from "../../context/theme";
+import React from "react";
+import Text from "./Text";
 
 type IProps = {
   children: string;
   color?: string;
-  size?: string; //todo: make size
-  bold?: boolean;
-  specialFont?: boolean;
+  style?: any;
 };
-const Text = (props: IProps) => {
-  const { color, size, children } = props;
-  const { isDark } = useContext(ThemeContext);
+const Title = (props: IProps) => {
+  const { color, children, style } = props;
   return (
-    <Div isDark={isDark} color={color} size={size}>
+    <Text style={style} color={color} bold size="5vh">
       {children}
-    </Div>
+    </Text>
   );
 };
-
-const Div = styled.p<{
-  isDark: boolean;
-  color?: string;
-  size?: string;
-  bold?: boolean;
-  specialFont?: boolean;
-}>`
-  color: ${(props) =>
-    props.color ? props.color : props.isDark ? "white" : "black"};
-  font-weight: ${(props) => (props.bold ? "bold" : "normal")};
-  font-family: ${(props) => (props.specialFont ? "Open Sans" : "Cookie")};
-  font-size: ${(props) => (props.specialFont ? "16px" : "5em")};
-`;
-export default Text;
+export default Title;

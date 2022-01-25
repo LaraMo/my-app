@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import "./App.css";
-import Span from "./components/atoms/Span";
-import AboutMe from "./components/helperComponents/AboutMe";
-import Card from "./components/molecules/Card";
-import { headings, projects, schools, workplaces } from "./const";
-import { ThemeContext } from "./context/theme";
-import { colors } from "./styles/colors";
+import Span from "../atoms/Span";
+import AboutMe from "./AboutMe";
+import Card from "../molecules/Card";
+import { headings, projects, education, workplaces } from "../../const/const";
+import { ThemeContext } from "../../context/theme";
+import { colors } from "../../styles/colors";
 
 const getDimensions = (ele: any) => {
   const { height } = ele.getBoundingClientRect();
@@ -20,17 +20,11 @@ const getDimensions = (ele: any) => {
   };
 };
 
-// const scrollTo = (ele: any) => {
-//   ele.scrollIntoView({
-//     behavior: "smooth",
-//     block: "start",
-//   });
-// };
-
 const Content = () => {
   const { isDark } = useContext(ThemeContext);
   let theme = isDark ? "dark" : "light";
   const [visibleSection, setVisibleSection] = useState("aboutMe");
+  const { t } = useTranslation();
 
   const headerRef = useRef(null);
   const aboutMeRef = useRef(null);
@@ -48,7 +42,6 @@ const Content = () => {
   const goToViolation = (id: string) => {
     //@ts-ignore
     let ele = sectionRefs.find((x) => x.section === id).ref.current;
-    console.log(ele);
     window.scrollTo({
       //@ts-ignore
       top: ele?.offsetTop,
@@ -90,16 +83,16 @@ const Content = () => {
         {headings.map((heading, key) => {
           return (
             <Span
+              key={key}
               noBorder
               isSelected={visibleSection === heading.id}
-              //@ts-ignore
               onClick={() => goToViolation(heading.id)}
               //@ts-ignore
               background={heading.color[theme]}
               width="25%"
-              color={isDark ? colors.textLight : colors.textDark}
+              color={isDark ? colors.lightText : colors.darkText}
             >
-              {heading.name}
+              {t([heading.name])}
             </Span>
           );
         })}
@@ -113,24 +106,24 @@ const Content = () => {
       <Section ref={projectsRef}>
         {/* @ts-ignore */}
         <Div background={headings[1].color[theme]}>
-          {projects.map((project) => {
-            return <Card {...project} />;
+          {projects.map((project, key) => {
+            return <Card key={key} {...project} />;
           })}
         </Div>
       </Section>
       <Section ref={workplacesRef}>
         {/* @ts-ignore */}
         <Div background={headings[2].color[theme]}>
-          {workplaces.map((workplace) => {
-            return <Card {...workplace} />;
+          {workplaces.map((workplace, key) => {
+            return <Card key={key} {...workplace} />;
           })}
         </Div>
       </Section>
       <Section style={{ minHeight: "80vh" }} ref={educationRef}>
         {/* @ts-ignore */}
         <Div background={headings[3].color[theme]}>
-          {schools.map((school) => {
-            return <Card {...school} />;
+          {education.map((education, key) => {
+            return <Card key={key} {...education} />;
           })}
         </Div>
       </Section>
@@ -149,7 +142,7 @@ const Nav = styled.div`
   padding: 15px;
   display: flex;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 860px) {
     flex-direction: column;
   }
 `;

@@ -13,9 +13,9 @@ const Page = (props: IProps) => {
 };
 
 const Container = styled.div<{ isDark: boolean }>`
-  display: flex;
   background: ${(props) =>
     props.isDark ? colors.darkBackground : colors.lightBackground};
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;

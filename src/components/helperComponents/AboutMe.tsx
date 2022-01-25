@@ -1,36 +1,35 @@
-import react from "React";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import me from "../../assets/lara.jpeg";
-import { facts, specialties } from "../../const";
+import { facts, specialties } from "../../const/const";
 import Span from "../atoms/Span";
 import Text from "../atoms/Text";
 import Title from "../atoms/Title";
-import { colors } from "../../styles/colors";
 const AboutMe = () => {
+  const { t } = useTranslation();
   return (
     <Div>
       <Intro>
         <RoundImage width="200px" height="200px" src={me} />
-        <Text>
-          Hey👋 My name is Lara and I am a web( 🖥️ ) and mobile( 📱 ) developer.
-        </Text>
+        <Text>{t("aboutMe.desc")}</Text>
       </Intro>
 
       <hr />
       <Facts>
-        {facts.map((fact, index) => {
+        {facts.map((fact, key) => {
           return (
-            <Fact>
-              <Title>{`${index + 1}.`}</Title>
-              <Text>{fact}</Text>
+            <Fact key={key}>
+              <Title>{`${key + 1}.`}</Title>
+              <Text>{t([fact])}</Text>
             </Fact>
           );
         })}
       </Facts>
       <hr />
       <Specialties>
-        {specialties.map((specialty) => {
-          return <Span>{specialty ?? ""}</Span>;
+        {specialties.map((specialty, key) => {
+          return <Span key={key}>{specialty}</Span>;
         })}
       </Specialties>
     </Div>
@@ -43,6 +42,9 @@ const Div = styled.div`
 const Intro = styled.div`
   display: flex;
   align-items: center;
+  @media only screen and (max-width: 860px) {
+    flex-direction: column;
+  }
 `;
 const Fact = styled(Intro)``;
 

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { ThemeContext } from "../../context/theme";
+import { colors } from "../../styles/colors";
 
 type Props = {
   children: string;
@@ -12,6 +14,7 @@ type Props = {
   id?: string;
 };
 const Span = (props: Props) => {
+  const { isDark } = useContext(ThemeContext);
   const {
     children,
     onClick,
@@ -24,6 +27,7 @@ const Span = (props: Props) => {
   } = props;
   return (
     <StyledSpan
+      isDark={isDark}
       id={id}
       isSelected={isSelected}
       background={background}
@@ -38,6 +42,7 @@ const Span = (props: Props) => {
 };
 
 const StyledSpan = styled.span<{
+  isDark: boolean;
   color?: string;
   background?: string;
   noBorder?: boolean;
@@ -46,18 +51,27 @@ const StyledSpan = styled.span<{
   onClick?: any;
 }>`
   padding: 10px;
-  border: 1px solid ${(props) => (props.noBorder ? "transparent" : "#ffd3d3")};
-  background: ${(props) => props.background ?? "#ffd3d3"};
-  color: ${(props) => props.color ?? "rgb(110, 70, 219)"};
+  background: ${(props) =>
+    props.background
+      ? props.background
+      : props.isDark
+      ? colors.darkAccentBackground
+      : colors.lightAccentBackground};
+  color: ${(props) =>
+    props.color
+      ? props.color
+      : props.isDark
+      ? colors.darkSpanText
+      : colors.lightSpanText};
   margin: 2px;
-  @media only screen and (min-width: 600px) {
+  text-align: center;
+  @media only screen and (min-width: 860px) {
     width: ${(props) => props.width};
   }
-  text-align: center;
-  ${({ isSelected }) =>
+  ${({ isSelected, isDark }) =>
     isSelected &&
     ` font-weight: bold;
-      border: 1px solid lightgray;
+      border: 1px solid ${isDark ? `lightgray` : "black"};
   `}
   &:hover {
     ${({ onClick }) =>
