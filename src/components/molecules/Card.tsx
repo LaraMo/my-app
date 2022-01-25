@@ -1,5 +1,4 @@
 import react from "React";
-import "react-tabs/style/react-tabs.css";
 import styled from "styled-components";
 import Text from "../atoms/Text";
 import Title from "../atoms/Title";
