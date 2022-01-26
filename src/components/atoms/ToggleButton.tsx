@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Switch from "react-switch";
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
@@ -6,10 +6,10 @@ import Text from "./Text";
 
 type IProps = {
   state: boolean;
-  setState: any; //todo
+  setState: () => void; 
   label?: string;
-  uncheckedIcon: any; //todo
-  checkedIcon: any; //todo
+  uncheckedIcon: JSX.Element; 
+  checkedIcon: JSX.Element;
 };
 const ToggleButton = (props: IProps) => {
   const { state, uncheckedIcon, checkedIcon, setState, label } = props;
