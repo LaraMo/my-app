@@ -5,13 +5,12 @@ import { colors } from "../../styles/colors";
 
 type Props = {
   children: string;
-  onClick?: any; //todo,
+  onClick?: () => void;
   background?: string;
   color?: string;
   noBorder?: boolean;
   width?: string;
   isSelected?: boolean;
-  id?: string;
 };
 const Span = (props: Props) => {
   const { isDark } = useContext(ThemeContext);
@@ -23,12 +22,10 @@ const Span = (props: Props) => {
     noBorder,
     width,
     isSelected,
-    id,
   } = props;
   return (
     <StyledSpan
       isDark={isDark}
-      id={id}
       isSelected={isSelected}
       background={background}
       noBorder={noBorder}
@@ -48,9 +45,11 @@ const StyledSpan = styled.span<{
   noBorder?: boolean;
   width?: string;
   isSelected?: boolean;
-  onClick?: any;
+  onClick?: () => void;
 }>`
   padding: 10px;
+  margin: 2px;
+  text-align: center;
   background: ${(props) =>
     props.background
       ? props.background
@@ -63,8 +62,6 @@ const StyledSpan = styled.span<{
       : props.isDark
       ? colors.darkSpanText
       : colors.lightSpanText};
-  margin: 2px;
-  text-align: center;
   @media only screen and (min-width: 500px) {
     width: ${(props) => props.width};
   }

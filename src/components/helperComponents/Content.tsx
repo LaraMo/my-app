@@ -40,15 +40,20 @@ const Content = () => {
     { section: "education", ref: educationRef },
   ];
 
-  const goToViolation = (id: string) => {
-    //@ts-ignore
-    let ele = sectionRefs.find((x) => x.section === id).ref.current;
+
+//will scroll to requested section by id
+const goToViolation = (id: string) => {
+  let element = sectionRefs.find((x) => x.section === id)
+  if(element){
     window.scrollTo({
       //@ts-ignore
-      top: ele?.offsetTop,
+      top: element?.ref?.current.offsetTop,
       behavior: "smooth",
     });
-  };
+  }
+ 
+};
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,6 +83,18 @@ const Content = () => {
     };
   }, [visibleSection]);
 
+  const contents = [
+    <AboutMe />,
+    projects.map((project, key) => {
+      return <Card key={key} {...project} />;
+    }),
+    workplaces.map((workplace, key) => {
+      return <Card key={key} {...workplace} />;
+    }),
+    education.map((education, key) => {
+      return <Card key={key} {...education} />;
+    }),
+  ];
   return (
     <>
       <Nav id="nav" ref={headerRef}>
@@ -98,48 +115,20 @@ const Content = () => {
           );
         })}
       </Nav>
-      <Section ref={aboutMeRef}>
-        <Title style={{ fontFamily: "Cookie", fontSize: "8vh" }}>
-          {t("aboutMe.title")}
-        </Title>
-        {/* @ts-ignore */}
-        <Div background={headings[0].color[theme]}>
-          <AboutMe />
-        </Div>
-      </Section>
-      <Section ref={projectsRef}>
-        <Title style={{ fontFamily: "Cookie", fontSize: "8vh" }}>
-          {t("projects.title")}
-        </Title>
-        {/* @ts-ignore */}
-        <Div background={headings[1].color[theme]}>
-          {projects.map((project, key) => {
-            return <Card key={key} {...project} />;
-          })}
-        </Div>
-      </Section>
-      <Section ref={workplacesRef}>
-        <Title style={{ fontFamily: "Cookie", fontSize: "8vh" }}>
-          {t("workplaces.title")}
-        </Title>
-        {/* @ts-ignore */}
-        <Div background={headings[2].color[theme]}>
-          {workplaces.map((workplace, key) => {
-            return <Card key={key} {...workplace} />;
-          })}
-        </Div>
-      </Section>
-      <Section style={{ minHeight: "80vh" }} ref={educationRef}>
-        <Title style={{ fontFamily: "Cookie", fontSize: "8vh" }}>
-          {t("education.title")}
-        </Title>
-        {/* @ts-ignore */}
-        <Div background={headings[3].color[theme]}>
-          {education.map((education, key) => {
-            return <Card key={key} {...education} />;
-          })}
-        </Div>
-      </Section>
+      {contents.map((content, key) => {
+        return (
+          <Section
+            style={{ minHeight: key === 3 ? "80vh" : "" }}
+            ref={sectionRefs[key].ref}
+          >
+            <Title style={{ fontFamily: "Cookie", fontSize: "8vh" }}>
+              {t(`${sectionRefs[key].section}.title`)}
+            </Title>
+            {/* @ts-ignore */}
+            <Div background={headings[key].color[theme]}>{content}</Div>
+          </Section>
+        );
+      })}
     </>
   );
 };
