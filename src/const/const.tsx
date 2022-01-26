@@ -110,8 +110,7 @@ export const education = [
     desc: "education.concordiaDesc",
     link: "https://www.concordia.ca/",
     img: concordia,
-    emoji: "🏫"
-
+    emoji: "🏫",
   },
   {
     title: "education.dawson",
@@ -120,7 +119,7 @@ export const education = [
     desc: "education.dawsonDesc",
     link: "https://www.dawsoncollege.qc.ca/",
     img: dawson,
-    emoji: "🎓"
+    emoji: "🎓",
   },
 ];
 

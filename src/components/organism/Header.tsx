@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Moon, Sun } from "react-feather";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -13,26 +13,48 @@ import ToggleButton from "../atoms/ToggleButton";
 
 const Header = () => {
   const { isDark, setTheme } = useContext(ThemeContext);
+  const [lang, setLang] = useState("");
   const { t } = useTranslation();
 
   useEffect(() => {
-    let temp = localStorage.getItem("lang")??"en";
+    let temp = localStorage.getItem("lang") ?? "en";
+    setLang(temp);
     i18next.changeLanguage(temp);
-  },[])
+  }, []);
+
+  const changeLanguage = (lang: string) => {
+    localStorage.setItem("lang", lang);
+    setLang(lang);
+    i18next.changeLanguage(lang);
+  };
   return (
     <Parallax isDark={isDark}>
       <Container>
-          <Center>
-            <Title style={{fontFamily: "Cookie", fontSize: "8vh", transform: "rotate(-10deg)"}} color={isDark? colors.darkAccentText: colors.lightAccentText}>{t("welcome.hello")}</Title>
-            <Title>{t("welcome.itsMe")}</Title>         
+        <Center>
+          <Title
+            style={{
+              fontFamily: "Cookie",
+              fontSize: "8vh",
+              transform: "rotate(-10deg)",
+            }}
+            color={isDark ? colors.darkAccentText : colors.lightAccentText}
+          >
+            {t("welcome.hello")}
+          </Title>
+          <Title>{t("welcome.itsMe")}</Title>
           <Langs>
-          <Span 
-          onClick={()=> {localStorage.setItem("lang", "en"); i18next.changeLanguage("en")}}
-          isSelected={localStorage.getItem("lang") === "en"}>EN</Span> 
-           <Span 
-          onClick={()=> {localStorage.setItem("lang", "fr"); i18next.changeLanguage("fr")}}
-          isSelected={localStorage.getItem("lang") === "fr"}>FR</Span>
-
+            <Span
+              onClick={() => changeLanguage("en")}
+              isSelected={lang === "en"}
+            >
+              EN
+            </Span>
+            <Span
+              onClick={() => changeLanguage("fr")}
+              isSelected={lang === "fr"}
+            >
+              FR
+            </Span>
           </Langs>
           <ToggleButton
             state={isDark}
@@ -40,9 +62,8 @@ const Header = () => {
             uncheckedIcon={<Moon color="white" />}
             checkedIcon={<Sun color="black" />}
           />
-                    </Center>
+        </Center>
 
-        
         <Img src={isDark ? faceDark : face} alt="logo of a girl spinning" />
       </Container>
     </Parallax>
@@ -73,7 +94,7 @@ const Parallax = styled.div<{ isDark: boolean }>`
   }
   `}
 }
-  `
+  `;
 
 const Container = styled.div`
   display: flex;
@@ -86,9 +107,9 @@ const Container = styled.div`
   }
 `;
 
-const Langs = styled.div `
+const Langs = styled.div`
   margin: 20px;
-`
+`;
 
 const Center = styled.div`
   display: flex;
