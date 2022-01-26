@@ -1,5 +1,4 @@
-import i18next from "i18next";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Moon, Sun } from "react-feather";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -11,22 +10,15 @@ import Span from "../atoms/Span";
 import Title from "../atoms/Title";
 import ToggleButton from "../atoms/ToggleButton";
 
-const Header = () => {
+type Props = {
+  lang:string
+  changeLanguage: (lang:string)=>void,
+}
+const Header = (props:Props) => {
   const { isDark, setTheme } = useContext(ThemeContext);
-  const [lang, setLang] = useState("");
+  const { lang, changeLanguage} = props;
   const { t } = useTranslation();
 
-  useEffect(() => {
-    let temp = localStorage.getItem("lang") ?? "en";
-    setLang(temp);
-    i18next.changeLanguage(temp);
-  }, []);
-
-  const changeLanguage = (lang: string) => {
-    localStorage.setItem("lang", lang);
-    setLang(lang);
-    i18next.changeLanguage(lang);
-  };
   return (
     <Parallax isDark={isDark}>
       <Container>

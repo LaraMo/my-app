@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
+import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import moment from "moment";
 import Text from "../atoms/Text";
 import { ThemeContext } from "../../context/theme";
 import { socialMedia } from "../../const/const";
-import styled from "styled-components";
-import { useTranslation } from "react-i18next";
 const Footer = () => {
   const { isDark } = useContext(ThemeContext);
   const { t } = useTranslation();
   return (
     <Container>
-      <div>
+    <div>
         {socialMedia.map((x, key) => {
           return (
             <Link key={key} href={x.siteUrl}>
