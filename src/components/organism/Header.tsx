@@ -81,7 +81,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding-bottom: 20px;
-  @media only screen and (max-width: 860px) {
+  @media only screen and (max-width: 625px) {
     flex-direction: column-reverse;
   }
 `;

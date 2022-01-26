@@ -48,7 +48,7 @@ export const projects = [
     startDate: moment("01/12/2021").format("MMM/DD/YYYY"),
     endDate: undefined,
     desc: "projects.memcaps.desc",
-    link: "https://medium.com/@laramo",
+    link: "https://www.dictionary.com/e/slang/under-construction/",
     img: memcaps,
     emoji: "📷",
   },
@@ -110,6 +110,8 @@ export const education = [
     desc: "education.concordiaDesc",
     link: "https://www.concordia.ca/",
     img: concordia,
+    emoji: "🏫"
+
   },
   {
     title: "education.dawson",
@@ -118,6 +120,7 @@ export const education = [
     desc: "education.dawsonDesc",
     link: "https://www.dawsoncollege.qc.ca/",
     img: dawson,
+    emoji: "🎓"
   },
 ];
 
