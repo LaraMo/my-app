@@ -12,7 +12,7 @@ export const colors = {
   //text
   darkText: "#142F43",
   lightText: "#E6E6E6",
-  darkSpanText: "#d9d9d9",
+  darkSpanText: "pink",
   lightSpanText: "rgb(110, 70, 219)",
   lightAccentText: "palevioletred",
   darkAccentText: "#e5beed",
@@ -22,6 +22,7 @@ export const colors = {
   darkAccentBackground: "#00406c",
   lightAccentBackground: "#ffd3d3",
 
-  //generic acccent
-  accentText: "gray",
+  //generic accent
+  lightDateAccent: "cadetblue",
+  darkDateAccent: "aquamarine",
 };

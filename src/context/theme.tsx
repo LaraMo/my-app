@@ -3,10 +3,10 @@ import React, { createContext, useState, ReactNode } from "react";
 type Props = {
   children: ReactNode;
 };
-//define the init state
+//init
 const init = {
   isDark: false,
-  setTheme: () => {}, //set theme to inverse of current value
+  setTheme: () => {}, //set theme to inverse of current value and save changes in local storage 
 };
 //define the user context
 export const ThemeContext = createContext(init);
@@ -15,13 +15,11 @@ export const ThemeProvider = (props: Props) => {
   const { children } = props;
 
   //data
-  const [isDark, setIsDark] = useState(
-    Boolean(localStorage.getItem("theme")) ?? false
-  );
+  const [isDark, setIsDark] = useState(localStorage.getItem("theme") === "true");
 
   // set theme
   const setTheme = () => {
-    localStorage.setItem("theme", isDark + "");
+    localStorage.setItem("theme", !isDark + "");
     setIsDark(() => !isDark);
   };
 

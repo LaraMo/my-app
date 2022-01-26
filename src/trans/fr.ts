@@ -4,10 +4,12 @@ export const fr = {
     itsMe: "C'est Lara Mo.",
   },
   aboutMe: {
+    facts : "Faits sur Moi",
+    skillSet : "Mon ensemble de compétences",
     title: "À propos de moi",
     desc: "Salut👋 Je m'appelle Lara et je suis développeuse web and mobile.",
     fact1: "J'aime tellement le café",
-    fact2: "Je parle anglais, français, russe et hébreu",
+    fact2: "Je parle Anglais, Français, Russe et Hébreu",
     fact3: "Je fais partie des 1-2% de la population unique ; les rousses.",
     fact4: "Je ne suis pas irlandaise.",
   },
