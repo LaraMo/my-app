@@ -5,7 +5,7 @@ export const en = {
   },
   aboutMe: {
     title: "About Me",
-    desc: "Hey👋 My name is Lara and I am a web( 🖥️ ) and mobile( 📱 ) developer.",
+    desc: "Hey👋 My name is Lara and I am a web and mobile developer.",
     fact1: "I love coffee so much",
     fact2: "I speak English, French, Russian and Hebrew",
     fact3: "I am part of the 1-2% of the unique population; redheads. ",
@@ -17,23 +17,23 @@ export const en = {
       desc: "Are you planning an event soon? Looking a way to capture memories and share it with your friends? You can use Memcaps, the first sharable gallery.",
     },
     medium: {
-      title: "Meidum Writer",
+      title: "Medium Writer",
       desc: "Writing articles on Javascript, React.js and React Native for my personal fun.",
     },
   },
   workplaces: {
     title: "Work Places",
     bombardier: {
-      desc: "Working on ReactNative mobile application, shared component library and sales website using React",
+      desc: "Working on a React Native mobile app.\nFrontend and backend development.\nDeveloping a shared component library.",
     },
     neptronic: {
-      desc: "Working on internal software using C# and React",
+      desc: "Implementing new web pages for the in-house business tools using React.js, C#, ASP.NET, and Microsoft SQL Server.",
     },
     nespresso: {
-      desc: "Sales representetive showcasing coffee machines",
+      desc: "Showcase and demonstrate the use of coffee machines and share coffee expertise through storytelling and coffee tastings.",
     },
     newton: {
-      desc: "Work on website using React.js",
+      desc: "Created user-friendly pages using react.js, node.js and SASS, i18n and Redux. Set up the testing environment with Jest.",
     },
   },
   education: {

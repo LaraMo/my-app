@@ -8,7 +8,7 @@ import Footer from "./components/helperComponents/Footer";
 import "./trans/i18n.ts";
 
 //todo: to remove
-import "./App.css";
+import "./App.scss";
 
 function App() {
   return (

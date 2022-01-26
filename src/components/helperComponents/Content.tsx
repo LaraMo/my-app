@@ -99,14 +99,18 @@ const Content = () => {
         })}
       </Nav>
       <Section ref={aboutMeRef}>
-      <Title style={{fontFamily: "Cookie", fontSize: "8vh"}}>{t("aboutMe.title")}</Title>
+        <Title style={{ fontFamily: "Cookie", fontSize: "8vh" }}>
+          {t("aboutMe.title")}
+        </Title>
         {/* @ts-ignore */}
         <Div background={headings[0].color[theme]}>
           <AboutMe />
         </Div>
       </Section>
       <Section ref={projectsRef}>
-      <Title style={{fontFamily: "Cookie", fontSize: "8vh"}}>{t("projects.title")}</Title>
+        <Title style={{ fontFamily: "Cookie", fontSize: "8vh" }}>
+          {t("projects.title")}
+        </Title>
         {/* @ts-ignore */}
         <Div background={headings[1].color[theme]}>
           {projects.map((project, key) => {
@@ -115,7 +119,9 @@ const Content = () => {
         </Div>
       </Section>
       <Section ref={workplacesRef}>
-      <Title style={{fontFamily: "Cookie", fontSize: "8vh"}}>{t("workplaces.title")}</Title>
+        <Title style={{ fontFamily: "Cookie", fontSize: "8vh" }}>
+          {t("workplaces.title")}
+        </Title>
         {/* @ts-ignore */}
         <Div background={headings[2].color[theme]}>
           {workplaces.map((workplace, key) => {
@@ -124,7 +130,9 @@ const Content = () => {
         </Div>
       </Section>
       <Section style={{ minHeight: "80vh" }} ref={educationRef}>
-      <Title style={{fontFamily: "Cookie", fontSize: "8vh"}}>{t("education.title")}</Title>
+        <Title style={{ fontFamily: "Cookie", fontSize: "8vh" }}>
+          {t("education.title")}
+        </Title>
         {/* @ts-ignore */}
         <Div background={headings[3].color[theme]}>
           {education.map((education, key) => {
@@ -149,13 +157,13 @@ const Section = styled.section`
 `;
 const Nav = styled.div`
   padding: 15px;
-  display: flex;  
+  display: flex;
   @media only screen and (min-width: 500px) {
     position: sticky;
     top: 0;
     z-index: 1;
-}
- 
+  }
+
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   @media only screen and (max-width: 500px) {
     flex-direction: column;

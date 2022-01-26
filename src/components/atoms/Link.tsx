@@ -12,7 +12,7 @@ const Link = (props: IProps) => {
   const { style, children, href } = props;
   const { isDark } = useContext(ThemeContext);
   return (
-    <StyledLink href={href} isDark={isDark} style={style}>
+    <StyledLink target="_blank" href={href} isDark={isDark} style={style}>
       {children}
     </StyledLink>
   );
@@ -25,7 +25,7 @@ const StyledLink = styled.a<{
 }>`
   color: ${(props) =>
     props.isDark ? colors.darkAccentText : colors.lightAccentText};
-  font-size: 16px;
+  font-size: 17px;
   text-decoration: none;
   font-family: "Outfit", sans-serif;
   &:hover {

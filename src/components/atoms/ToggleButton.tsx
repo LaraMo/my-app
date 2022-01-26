@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import Switch from "react-switch";
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
@@ -17,16 +17,15 @@ const ToggleButton = (props: IProps) => {
     <Div>
       {label && <Text>{label}</Text>}
       <Switch
-      onChange={setState}
-      checked={state}
-      offHandleColor={colors.lightAccentBackground}
-      onHandleColor={colors.darkAccentBackground}
-      offColor={colors.darkAccentBackground}
-      onColor={colors.lightAccentBackground}
-      checkedIcon={checkedIcon}
-      uncheckedIcon={uncheckedIcon}
+        onChange={setState}
+        checked={state}
+        offHandleColor={colors.lightAccentBackground}
+        onHandleColor={colors.darkAccentBackground}
+        offColor={colors.darkAccentBackground}
+        onColor={colors.lightAccentBackground}
+        checkedIcon={checkedIcon}
+        uncheckedIcon={uncheckedIcon}
       />
-    
     </Div>
   );
 };

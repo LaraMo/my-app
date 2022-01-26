@@ -33,7 +33,7 @@ const Div = styled.p<{
       ? colors.lightText
       : colors.darkText};
   font-weight: ${(props) => (props.bold ? "bold" : "normal")};
-  font-size: ${(props) => (props.size ? props.size : "16px")};
+  font-size: ${(props) => (props.size ? props.size : "17px")};
   font-family: "Outfit", sans-serif;
 `;
 export default Text;

@@ -15,10 +15,13 @@ export const ThemeProvider = (props: Props) => {
   const { children } = props;
 
   //data
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(
+    Boolean(localStorage.getItem("theme")) ?? false
+  );
 
   // set theme
   const setTheme = () => {
+    localStorage.setItem("theme", isDark + "");
     setIsDark(() => !isDark);
   };
 

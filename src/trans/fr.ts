@@ -5,7 +5,7 @@ export const fr = {
   },
   aboutMe: {
     title: "À propos de moi",
-    desc: "Salut👋 Je m'appelle Lara et je suis développeuse web( 🖥️ ) and mobile( 📱 ).",
+    desc: "Salut👋 Je m'appelle Lara et je suis développeuse web and mobile.",
     fact1: "J'aime tellement le café",
     fact2: "Je parle anglais, français, russe et hébreu",
     fact3: "Je fais partie des 1-2% de la population unique ; les rousses.",
@@ -17,23 +17,23 @@ export const fr = {
       desc: " Envisagez-vous un événement prochainement ? Vous cherchez un moyen de capturer des souvenirs et de le partager avec vos amis ? Vous pouvez utiliser Memcaps, la première galerie partageable",
     },
     medium: {
-      title: "Écrivain sur médium",
-      desc: "Jécrie des articles sur Javascript, React.js et React Native pour mon plaisir personnel",
+      title: "Écrivain sur Medium",
+      desc: "J'écrie des articles sur Javascript, React.js et React Native pour mon plaisir personnel",
     },
   },
   workplaces: {
     title: "Lieux de travail",
     bombardier: {
-      desc: "fr-Working on ReactNative mobile application, shared component library and sales website using React",
+      desc: "Travailler sur une application mobile React Native.\nDéveloppement frontend et backend avec React.js et Node.js.",
     },
     neptronic: {
-      desc: "fr-Working on internal software using C# and React",
+      desc: "Implémentation de nouvelles pages web avec de React.js, C#, ASP.NET et Microsoft SQL Server.",
     },
     nespresso: {
-      desc: "fr-Sales representetive showcasing coffee machines",
+      desc: "Présentez et démontrez l'utilisation des machines à café et partagez l'expertise du café à travers des contes et des dégustations de café.",
     },
     newton: {
-      desc: "fr-Work on website using React.js",
+      desc: "Créé des pages conviviales à l'aide de React.js, Node.js et SASS, Redux et i18n.\n Configurer l'environnement de test avec Jest.",
     },
   },
   education: {
@@ -41,7 +41,7 @@ export const fr = {
     concordia: "Université Concordia",
     concordiaDesc: "Baccalauréats en informatique",
     dawson: "Collège Dawson",
-    dawsonDesc: "Déc en informatique",
+    dawsonDesc: "DEC en informatique",
   },
   footer: {
     title: "{{icon}} Fait par LaraMo ©{{year}}",
