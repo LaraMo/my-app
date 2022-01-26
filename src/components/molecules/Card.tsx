@@ -53,7 +53,7 @@ const Card = (props: Props) => {
 };
 
 const Div = styled.div<{ isEmoji?: string }>`
-  @media only screen and (max-width: 860px) {
+  @media only screen and (max-width: 500px) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -91,7 +91,7 @@ const Dates = styled(Text)`
 const Content = styled.div`
   padding-left: 20px;
   flex: 3;
-  @media only screen and (max-width: 860px) {
+  @media only screen and (max-width: 500px) {
     padding: 0px;
     text-align: center;
     display: flex;

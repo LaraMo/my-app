@@ -42,7 +42,7 @@ const Div = styled.div`
 const Intro = styled.div`
   display: flex;
   align-items: center;
-  @media only screen and (max-width: 860px) {
+  @media only screen and (max-width: 500px) {
     flex-direction: column;
   }
 `;

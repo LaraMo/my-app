@@ -65,7 +65,7 @@ const StyledSpan = styled.span<{
       : colors.lightSpanText};
   margin: 2px;
   text-align: center;
-  @media only screen and (min-width: 860px) {
+  @media only screen and (min-width: 500px) {
     width: ${(props) => props.width};
   }
   ${({ isSelected, isDark }) =>
