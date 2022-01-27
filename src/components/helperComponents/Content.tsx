@@ -40,20 +40,17 @@ const Content = () => {
     { section: "education", ref: educationRef },
   ];
 
-
-//will scroll to requested section by id
-const goToViolation = (id: string) => {
-  let element = sectionRefs.find((x) => x.section === id)
-  if(element){
-    window.scrollTo({
-      //@ts-ignore
-      top: element?.ref?.current.offsetTop,
-      behavior: "smooth",
-    });
-  }
- 
-};
-
+  //will scroll to requested section by id
+  const goToViolation = (id: string) => {
+    let element = sectionRefs.find((x) => x.section === id);
+    if (element) {
+      window.scrollTo({
+        //@ts-ignore
+        top: element?.ref?.current.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -163,7 +160,7 @@ const Div = styled.div<{ background: string }>`
   background: ${(props) => props.background};
   margin-top: 40px;
   max-width: 750px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 `;
 export default Content;

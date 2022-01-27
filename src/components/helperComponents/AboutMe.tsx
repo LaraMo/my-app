@@ -9,7 +9,7 @@ import Span from "../atoms/Span";
 import Text from "../atoms/Text";
 import Title from "../atoms/Title";
 const AboutMe = () => {
-  const { isDark } = useContext(ThemeContext)
+  const { isDark } = useContext(ThemeContext);
   const { t } = useTranslation();
   return (
     <Div>
@@ -18,8 +18,18 @@ const AboutMe = () => {
         <Text>{t("aboutMe.desc")}</Text>
       </Intro>
 
-      <Text  bold style={{background: isDark? colors.darkPrimary : colors.primary, position: "absolute", marginLeft:"10px", padding: "0 4px"}}>{t("aboutMe.facts")}</Text>
-        <Hr />
+      <Text
+        bold
+        style={{
+          background: isDark ? colors.darkPrimary : colors.primary,
+          position: "absolute",
+          marginLeft: "10px",
+          padding: "0 4px",
+        }}
+      >
+        {t("aboutMe.facts")}
+      </Text>
+      <Hr />
       <Facts>
         {facts.map((fact, key) => {
           return (
@@ -30,8 +40,18 @@ const AboutMe = () => {
           );
         })}
       </Facts>
-        <Text  bold style={{background: isDark? colors.darkPrimary : colors.primary, position: "absolute", marginLeft:"10px", padding: "0 4px"}}>{t("aboutMe.skillSet")}</Text>
-        <Hr />
+      <Text
+        bold
+        style={{
+          background: isDark ? colors.darkPrimary : colors.primary,
+          position: "absolute",
+          marginLeft: "10px",
+          padding: "0 4px",
+        }}
+      >
+        {t("aboutMe.skillSet")}
+      </Text>
+      <Hr />
       <Specialties>
         {specialties.map((specialty, key) => {
           return <Span key={key}>{specialty}</Span>;
@@ -73,7 +93,7 @@ const Specialties = styled.div`
   padding: 15px 0;
 `;
 
-const Hr = styled.hr `
+const Hr = styled.hr`
   margin: 10px 0;
-`
+`;
 export default AboutMe;

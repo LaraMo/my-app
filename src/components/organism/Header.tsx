@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import ScrollAnimation from "react-animate-on-scroll";
 import { Moon, Sun } from "react-feather";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -11,12 +12,12 @@ import Title from "../atoms/Title";
 import ToggleButton from "../atoms/ToggleButton";
 
 type Props = {
-  lang:string
-  changeLanguage: (lang:string)=>void,
-}
-const Header = (props:Props) => {
+  lang: string;
+  changeLanguage: (lang: string) => void;
+};
+const Header = (props: Props) => {
   const { isDark, setTheme } = useContext(ThemeContext);
-  const { lang, changeLanguage} = props;
+  const { lang, changeLanguage } = props;
   const { t } = useTranslation();
 
   return (
@@ -55,8 +56,9 @@ const Header = (props:Props) => {
             checkedIcon={<Sun color="black" />}
           />
         </Center>
-
-        <Img src={isDark ? faceDark : face} alt="logo of a girl spinning" />
+        <ScrollAnimation animateOnce animateIn="animate__fadeInRight">
+          <Img src={isDark ? faceDark : face} alt="logo of a girl spinning" />
+        </ScrollAnimation>
       </Container>
     </Parallax>
   );

@@ -7,6 +7,7 @@ import { colors } from "../../styles/colors";
 import { useTranslation } from "react-i18next";
 import Link from "../atoms/Link";
 import { ThemeContext } from "../../context/theme";
+
 type Props = {
   title: string;
   img: string;
@@ -18,7 +19,7 @@ type Props = {
 };
 const Card = (props: Props) => {
   const { title, img, desc, link, startDate, endDate, emoji } = props;
-  const { isDark } = useContext(ThemeContext)
+  const { isDark } = useContext(ThemeContext);
   const { t } = useTranslation();
   return (
     <Div isEmoji={emoji}>
@@ -38,18 +39,20 @@ const Card = (props: Props) => {
           {emoji}
         </p>
       )}
-
       <Content>
         <Title>{t([title])}</Title>
         <TextContainer>
-        <Desc>{t([desc])}</Desc>
-        <Text size="15px" color={isDark? colors.darkDateAccent: colors.lightDateAccent}>{`${startDate} - ${endDate ?? t("common.present")}`}</Text>
-        <Link href={link}>
-          <LinkContent>
-            <Link2 />
-            {t("common.view")}
-          </LinkContent>
-        </Link>
+          <Desc>{t([desc])}</Desc>
+          <Text
+            size="15px"
+            color={isDark ? colors.darkDateAccent : colors.lightDateAccent}
+          >{`${startDate} - ${endDate ?? t("common.present")}`}</Text>
+          <Link href={link}>
+            <LinkContent>
+              <Link2 />
+              {t("common.view")}
+            </LinkContent>
+          </Link>
         </TextContainer>
       </Content>
     </Div>
@@ -102,9 +105,9 @@ const Content = styled.div`
   }
 `;
 
-const TextContainer = styled.div `
+const TextContainer = styled.div`
   padding-top: 8px;
-  >* {
+  > * {
     padding-bottom: 8px;
   }
   @media only screen and (max-width: 500px) {
@@ -113,7 +116,7 @@ const TextContainer = styled.div `
     flex-direction: column;
     align-items: center;
   }
-`
+`;
 
 const LinkContent = styled.div`
   display: flex;

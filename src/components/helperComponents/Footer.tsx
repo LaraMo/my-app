@@ -5,12 +5,13 @@ import moment from "moment";
 import Text from "../atoms/Text";
 import { ThemeContext } from "../../context/theme";
 import { socialMedia } from "../../const/const";
+
 const Footer = () => {
   const { isDark } = useContext(ThemeContext);
   const { t } = useTranslation();
   return (
     <Container>
-    <div>
+      <div>
         {socialMedia.map((x, key) => {
           return (
             <Link key={key} href={x.siteUrl}>

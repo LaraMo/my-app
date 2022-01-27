@@ -14,15 +14,8 @@ type Props = {
 };
 const Span = (props: Props) => {
   const { isDark } = useContext(ThemeContext);
-  const {
-    children,
-    onClick,
-    background,
-    color,
-    noBorder,
-    width,
-    isSelected,
-  } = props;
+  const { children, onClick, background, color, noBorder, width, isSelected } =
+    props;
   return (
     <StyledSpan
       isDark={isDark}
