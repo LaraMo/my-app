@@ -7,6 +7,7 @@ import Content from "./components/helperComponents/Content";
 import Footer from "./components/helperComponents/Footer";
 import i18next from "i18next";
 import "./trans/i18n.ts";
+import "animate.css/animate.min.css";
 
 //todo: to remove
 import "./App.scss";
@@ -17,7 +18,7 @@ function App() {
     let temp = localStorage.getItem("lang") ?? "en";
     setLang(temp);
     i18next.changeLanguage(temp);
-  },[]);
+  }, []);
 
   const changeLanguage = (lang: string) => {
     localStorage.setItem("lang", lang);
@@ -27,7 +28,7 @@ function App() {
   return (
     <ThemeProvider>
       <Page>
-        <Header lang={lang} changeLanguage={changeLanguage}/>
+        <Header lang={lang} changeLanguage={changeLanguage} />
         <Container>
           <Content />
           <Footer />

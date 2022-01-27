@@ -4,8 +4,8 @@ export const fr = {
     itsMe: "C'est Lara Mo.",
   },
   aboutMe: {
-    facts : "Faits sur Moi",
-    skillSet : "Mon ensemble de compétences",
+    facts: "Faits sur Moi",
+    skillSet: "Mon ensemble de compétences",
     title: "À propos de moi",
     desc: "Salut👋 Je m'appelle Lara et je suis développeuse web and mobile.",
     fact1: "J'aime tellement le café",
