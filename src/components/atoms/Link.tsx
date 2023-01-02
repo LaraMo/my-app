@@ -1,40 +1,51 @@
-import React, { ReactNode, useContext } from "react";
-import styled from "styled-components";
-import { ThemeContext } from "../../context/theme";
-import { colors } from "../../styles/colors";
+import React, { ReactNode, useContext } from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../../context/themeContext';
+import { colors } from '../../styles/colors';
+import { sharedTextStyle } from '../../styles/shared';
 
-type IProps = {
+/**
+ * Interface
+ */
+interface LinkProps {
   children: ReactNode;
   href: string;
-  style?: any;
-};
-const Link = (props: IProps) => {
-  const { style, children, href } = props;
-  const { isDark } = useContext(ThemeContext);
+}
+
+/**
+ * Link
+ * Immutable props - check LinkProps for more details.
+ * @param props
+ * @returns
+ */
+const Link = ({ children, href }: LinkProps) => {
+  /**
+   * Hooks
+   */
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <StyledLink target="_blank" href={href} isDark={isDark} style={style}>
+    <StyledLink color={colors[theme].accentText} target="_blank" href={href} theme={theme}>
       {children}
     </StyledLink>
   );
 };
 
+/**
+ * Styled Components
+ */
 const StyledLink = styled.a<{
-  isDark: boolean;
+  theme: boolean;
   color?: string;
-  size?: string;
 }>`
-  color: ${(props) =>
-    props.isDark ? colors.darkAccentText : colors.lightAccentText};
-  font-size: 17px;
+  ${sharedTextStyle};
+  color: ${(props) => props.color};
   text-decoration: none;
-  font-family: "Outfit", sans-serif;
   &:hover {
-    color: ${(props) =>
-      props.isDark ? colors.darkSpanText : colors.lightSpanText};
+    color: ${(props) => colors[props.theme as keyof typeof colors].spanText};
   }
   &:visited {
-    color: ${(props) =>
-      props.isDark ? colors.darkAccentText : colors.lightAccentText};
+    color: ${(props) => props.color};
   }
 `;
 export default Link;

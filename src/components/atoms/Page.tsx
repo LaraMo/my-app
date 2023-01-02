@@ -1,25 +1,39 @@
-import React, { ReactNode, useContext } from "react";
-import styled from "styled-components";
-import { ThemeContext } from "../../context/theme";
-import { colors } from "../../styles/colors";
+import React, { ReactNode, useContext } from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../../context/themeContext';
+import { colors } from '../../styles/colors';
 
-type IProps = {
+/**
+ * Interface
+ */
+interface PageProps {
   children: ReactNode;
-};
-const Page = (props: IProps) => {
-  const { isDark } = useContext(ThemeContext);
-  const { children } = props;
-  return <Container isDark={isDark}>{children}</Container>;
+}
+
+/**
+ * Page
+ * Immutable props - check PageProps for more details.
+ * @returns
+ */
+const Page = ({ children }: PageProps) => {
+  /**
+   * Hooks
+   */
+  const { theme } = useContext(ThemeContext);
+
+  return <Container theme={theme}>{children}</Container>;
 };
 
-const Container = styled.div<{ isDark: boolean }>`
-  background: ${(props) =>
-    props.isDark ? colors.darkBackground : colors.lightBackground};
-  display: flex;
-  justify-content: center;
+/**
+ * Styled Components
+ */
+const Container = styled.div<{ theme: 'light' | 'dark' | 'christmas' | 'easter' }>`
   align-items: center;
-  width: 100%;
+  background: ${(props) => colors[props.theme as keyof typeof colors].background};
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 100%;
 `;
 
 export default Page;

@@ -1,34 +1,37 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { useTranslation } from "react-i18next";
-import moment from "moment";
-import Text from "../atoms/Text";
-import { ThemeContext } from "../../context/theme";
-import { socialMedia } from "../../const/const";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import moment from 'moment';
+import Text from '../atoms/Text';
+import { ThemeContext } from '../../context/themeContext';
+import { socialMedia } from '../../utils/const';
+import { colors } from '../../styles/colors';
 
-const Footer = () => {
-  const { isDark } = useContext(ThemeContext);
+/**
+ * Footer Section
+ * @returns
+ */
+const FooterSection = () => {
+  /**
+   * Hooks
+   */
+  const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
+
   return (
     <Container>
       <div>
         {socialMedia.map((x, key) => {
           return (
             <Link key={key} href={x.siteUrl}>
-              <img
-                alt="footerImg"
-                width="50px"
-                height="50px"
-                key={key}
-                src={x.imgUrl}
-              />
+              <img alt="social" width="50px" height="50px" key={key} src={x.imgUrl} />
             </Link>
           );
         })}
       </div>
       <Text>
-        {t("footer.title", {
-          icon: isDark ? "🤍" : "💜",
+        {t('footer.title', {
+          icon: colors[theme].icon,
           year: moment().year(),
         })}
       </Text>
@@ -36,13 +39,18 @@ const Footer = () => {
   );
 };
 
+/**
+ * Styled Components
+ */
 const Container = styled.div`
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
+  gap: 15px;
   text-align: center;
+  padding: 10px;
 `;
 
 const Link = styled.a`
@@ -89,4 +97,5 @@ const Link = styled.a`
     }
   }
 `;
-export default Footer;
+
+export default FooterSection;

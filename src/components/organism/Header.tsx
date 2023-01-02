@@ -1,132 +1,122 @@
-import React, { useContext } from "react";
-import ScrollAnimation from "react-animate-on-scroll";
-import { Moon, Sun } from "react-feather";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
-import face from "../../assets/face.png";
-import faceDark from "../../assets/faceDark.png";
-import { ThemeContext } from "../../context/theme";
-import { colors } from "../../styles/colors";
-import Span from "../atoms/Span";
-import Title from "../atoms/Title";
-import ToggleButton from "../atoms/ToggleButton";
+import React, { useContext } from 'react';
+import ScrollAnimation from 'react-animate-on-scroll';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import { ToastContainer } from 'react-toastify';
+import { BsFillSunFill, BsMoonFill, BsFillTreeFill } from 'react-icons/bs';
+import { GiRabbitHead } from 'react-icons/gi';
+import { ThemeContext } from '../../context/themeContext';
+import Span from '../atoms/Span';
+import Title from '../atoms/Title';
+import { colors } from '../../styles/colors';
+import ThemeIcon from '../atoms/ThemeIcon';
+import Superwoman from '../atoms/Superwoman';
+import Snow from '../atoms/Snow';
+import { themeList } from '../../utils/const';
+import 'react-toastify/dist/ReactToastify.css';
 
-type Props = {
+/**
+ * Interface
+ */
+interface HeaderProps {
   lang: string;
-  changeLanguage: (lang: string) => void;
-};
-const Header = (props: Props) => {
-  const { isDark, setTheme } = useContext(ThemeContext);
-  const { lang, changeLanguage } = props;
+  handleChangeLanguage: (lang: string) => void;
+}
+/**
+ * Header
+ * Immutable props - check HeaderProps for more details.
+ * @returns
+ */
+const Header = ({ lang, handleChangeLanguage }: HeaderProps) => {
+  /**
+   * Hooks
+   */
+  const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
 
   return (
-    <Parallax isDark={isDark}>
+    <Parallax theme={theme}>
       <Container>
-        <Center>
+        {theme === themeList.CHRISTMAS && <Snow />}
+        <RightSide>
           <Title
             style={{
-              fontFamily: "Cookie",
-              fontSize: "8vh",
-              transform: "rotate(-10deg)",
+              color: colors[theme].text,
+              fontFamily: 'Cookie',
+              fontSize: '8vh',
+              transform: 'rotate(-10deg)',
+              width: '200px',
             }}
-            color={isDark ? colors.darkAccentText : colors.lightAccentText}
+            color={colors[theme].accentText}
           >
-            {t("welcome.hello")}
+            {t('welcome.hello')}
           </Title>
-          <Title>{t("welcome.itsMe")}</Title>
           <Langs>
-            <Span
-              onClick={() => changeLanguage("en")}
-              isSelected={lang === "en"}
-            >
+            <Span color={colors[theme].text} onClick={() => handleChangeLanguage('en')} isSelected={lang === 'en'}>
               EN
             </Span>
-            <Span
-              onClick={() => changeLanguage("fr")}
-              isSelected={lang === "fr"}
-            >
+            <Span color={colors[theme].text} onClick={() => handleChangeLanguage('fr')} isSelected={lang === 'fr'}>
               FR
             </Span>
           </Langs>
-          <ToggleButton
-            state={isDark}
-            setState={setTheme}
-            uncheckedIcon={<Moon color="white" />}
-            checkedIcon={<Sun color="black" />}
-          />
-        </Center>
+          <IconContainer theme={theme}>
+            <ThemeIcon themeValue="light" svg={<BsFillSunFill />} />
+            <ThemeIcon themeValue="dark" svg={<BsMoonFill />} />
+            <ThemeIcon themeValue="christmas" svg={<BsFillTreeFill />} />
+            <ThemeIcon themeValue="easter" svg={<GiRabbitHead />} />
+          </IconContainer>
+        </RightSide>
         <ScrollAnimation animateOnce animateIn="animate__fadeInRight">
-          <Img src={isDark ? faceDark : face} alt="logo of a girl spinning" />
+          <Superwoman />
         </ScrollAnimation>
+        <ToastContainer />
       </Container>
     </Parallax>
   );
 };
 
-const Parallax = styled.div<{ isDark: boolean }>`
-  background: linear-gradient(
-         0deg,
-         rgba(241, 241, 241, 0) 2%,
-         rgba(241, 241, 241, 1) 40%,
-         rgba(241, 241, 241, 1) 46%,
-         rgba(242, 228, 234, 1) 57%,
-         rgba(250, 161, 196, 0.68531162464986) 98%,
-       rgba(255, 191, 216, 0.8421743697478992) 100%,
-         rgba(241, 241, 241, 1) 100%
-      );
-  min-height: 500px;
+/**
+ * Styled Components
+ */
+const Parallax = styled.div<{ theme: string }>`
+  background: ${(props) => colors[props.theme as keyof typeof colors].parallax};
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 500px;
   width: 100%;
-  ${({ isDark }) =>
-    isDark &&
-    `
-    background: linear-gradient(0deg, rgba(3,27,83,1) 17%, rgba(18,47,118,1) 32%, rgba(32,67,153,1) 60%, rgba(42,81,177,1) 92%);
-  }
-  `}
-}
-  `;
+`;
 
 const Container = styled.div`
+  align-items: center;
   display: flex;
   height: 100vh;
   justify-content: center;
-  align-items: center;
-  padding-bottom: 20px;
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 500px) {
     flex-direction: column-reverse;
   }
 `;
 
+const RightSide = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 const Langs = styled.div`
+  display: flex;
   margin: 20px;
 `;
 
-const Center = styled.div`
+const IconContainer = styled.div<{ theme: string }>`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const Img = styled.img`
-  height: 50vmin;
-  @media (prefers-reduced-motion: no-preference) {
-    animation: girl infinite 6s linear;
-  }
-
-  @keyframes girl {
-    0% {
-      transform: rotate(0deg);
-    }
-    50% {
-      transform: rotate(45deg);
-    }
-    100% {
-      transform: rotate(0deg);
+  z-index: 10;
+  > span {
+    > svg {
+      fill: ${(props) => colors[props.theme as keyof typeof colors].text};
+      height: 20px;
+      width: 20px;
     }
   }
 `;

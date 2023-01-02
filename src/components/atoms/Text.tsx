@@ -1,39 +1,46 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { ThemeContext } from "../../context/theme";
-import { colors } from "../../styles/colors";
-
-type IProps = {
+//@ts-nocheck
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../../context/themeContext';
+import { sharedTextStyle } from '../../styles/shared';
+/**
+ * Interface
+ */
+interface TextProps {
   children: string;
   color?: string;
-  size?: string; //todo: make size
-  bold?: boolean;
-  style?: any;
-};
-const Text = (props: IProps) => {
-  const { color, size, children, bold, style } = props;
-  const { isDark } = useContext(ThemeContext);
+  size?: string;
+  isBold?: boolean;
+  style?: unknown;
+}
+
+/**
+ * Text
+ * Immutable props - check TextProps for more details.
+ * @returns
+ */
+const Text = ({ color, size, children, isBold, style }: TextProps) => {
+  /**
+   * Hooks
+   */
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <Div style={style} isDark={isDark} bold={bold} color={color} size={size}>
+    <StyledText style={style} theme={theme} isBold={isBold} color={color} size={size}>
       {children}
-    </Div>
+    </StyledText>
   );
 };
 
-const Div = styled.p<{
-  isDark: boolean;
+/**
+ * Styled Components
+ */
+const StyledText = styled.p<{
+  theme: string;
   color?: string;
   size?: string;
-  bold?: boolean;
+  isBold?: boolean;
 }>`
-  color: ${(props) =>
-    props.color
-      ? props.color
-      : props.isDark
-      ? colors.lightText
-      : colors.darkText};
-  font-weight: ${(props) => (props.bold ? "bold" : "normal")};
-  font-size: ${(props) => (props.size ? props.size : "17px")};
-  font-family: "Outfit", sans-serif;
+  ${sharedTextStyle}
 `;
 export default Text;

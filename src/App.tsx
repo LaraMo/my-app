@@ -1,46 +1,62 @@
-import React, { useEffect, useState } from "react";
-import Page from "./components/atoms/Page";
-import Header from "./components/organism/Header";
-import { ThemeProvider } from "./context/theme";
-import styled from "styled-components";
-import Content from "./components/helperComponents/Content";
-import Footer from "./components/helperComponents/Footer";
-import i18next from "i18next";
-import "./trans/i18n.ts";
-import "animate.css/animate.min.css";
-
-//todo: to remove
-import "./App.scss";
+import React, { useEffect, useState } from 'react';
+import { ProSidebarProvider } from 'react-pro-sidebar';
+import Page from './components/atoms/Page';
+import Header from './components/organism/Header';
+import { ThemeProvider } from './context/themeContext';
+import styled from 'styled-components';
+import i18next from 'i18next';
+import Content from './components/sections/ContentSection';
+import Footer from './components/sections/FooterSection';
+import './trans/i18n.ts';
+import 'animate.css/animate.min.css';
+import './App.scss';
 
 function App() {
-  const [lang, setLang] = useState("");
+  /**
+   * State
+   */
+  const [lang, setLang] = useState('');
+
+  /**
+   * UseEffect
+   * Init language to the value in local storage. If value doesn't exist, set language to English.
+   */
   useEffect(() => {
-    let temp = localStorage.getItem("lang") ?? "en";
+    const temp = localStorage.getItem('lang') ?? 'en';
     setLang(temp);
     i18next.changeLanguage(temp);
   }, []);
 
-  const changeLanguage = (lang: string) => {
-    localStorage.setItem("lang", lang);
+  /**
+   * Change language  globally based on a given language
+   * @param {string} lang
+   */
+  const handleChangeLanguage = (lang: string) => {
+    localStorage.setItem('lang', lang);
     setLang(lang);
     i18next.changeLanguage(lang);
   };
+
   return (
     <ThemeProvider>
-      <Page>
-        <Header lang={lang} changeLanguage={changeLanguage} />
-        <Container>
-          <Content />
-          <Footer />
-        </Container>
-      </Page>
+      <ProSidebarProvider>
+        <Page>
+          <Header lang={lang} handleChangeLanguage={handleChangeLanguage} />
+          <Container>
+            <Content />
+            <Footer />
+          </Container>
+        </Page>
+      </ProSidebarProvider>
     </ThemeProvider>
   );
 }
 
+/**
+ * Styled Components
+ */
 const Container = styled.div`
-  padding: 30px;
-  max-width: 1200px;
   height: 100%;
+  max-width: 1200px;
 `;
 export default App;

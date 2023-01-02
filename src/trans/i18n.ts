@@ -1,7 +1,11 @@
-import i18next from "i18next";
-import { initReactI18next } from "react-i18next";
-import { en } from "./en";
-import { fr } from "./fr";
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { en } from './en';
+import { fr } from './fr';
+
+/**
+ *  Possible languages
+ */
 const resources = {
   en: {
     translation: en,
@@ -12,7 +16,7 @@ const resources = {
 };
 i18next.use(initReactI18next).init({
   resources,
-  lng: "en",
+  lng: 'en',
   interpolation: {
     escapeValue: false,
   },

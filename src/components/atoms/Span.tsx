@@ -1,74 +1,58 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { ThemeContext } from "../../context/theme";
-import { colors } from "../../styles/colors";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../../context/themeContext';
+import { colors } from '../../styles/colors';
 
-type Props = {
+/**
+ * Interface
+ */
+interface SpanProps {
   children: string;
   onClick?: () => void;
-  background?: string;
   color?: string;
-  noBorder?: boolean;
-  width?: string;
   isSelected?: boolean;
-};
-const Span = (props: Props) => {
-  const { isDark } = useContext(ThemeContext);
-  const { children, onClick, background, color, noBorder, width, isSelected } =
-    props;
+}
+
+/**
+ * Span
+ * Immutable props - check SpanProps for more details.
+ * @returns
+ */
+const Span = ({ children, onClick, isSelected, color }: SpanProps) => {
+  /**
+   * Hooks
+   */
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <StyledSpan
-      isDark={isDark}
-      isSelected={isSelected}
-      background={background}
-      noBorder={noBorder}
-      width={width}
-      color={color}
-      onClick={onClick}
-    >
+    <StyledSpan theme={theme} isSelected={isSelected} color={color} onClick={onClick}>
       {children}
     </StyledSpan>
   );
 };
 
-const StyledSpan = styled.span<{
-  isDark: boolean;
-  color?: string;
-  background?: string;
-  noBorder?: boolean;
-  width?: string;
+/**
+ * Styled components
+ */
+export const StyledSpan = styled.span<{
+  theme: string;
   isSelected?: boolean;
+  color?: string;
   onClick?: () => void;
 }>`
+  &:hover {
+    // only if there is a click event on the span
+    ${({ onClick }) => onClick && `cursor: pointer;`}
+  }
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
   padding: 10px;
   margin: 2px;
-  text-align: center;
-  background: ${(props) =>
-    props.background
-      ? props.background
-      : props.isDark
-      ? colors.darkAccentBackground
-      : colors.lightAccentBackground};
-  color: ${(props) =>
-    props.color
-      ? props.color
-      : props.isDark
-      ? colors.darkSpanText
-      : colors.lightSpanText};
-  @media only screen and (min-width: 500px) {
-    width: ${(props) => props.width};
-  }
-  ${({ isSelected, isDark }) =>
-    isSelected &&
-    ` font-weight: bold;
-      border: 1px solid ${isDark ? `lightgray` : "black"};
-  `}
-  &:hover {
-    ${({ onClick }) =>
-      onClick &&
-      ` cursor: pointer;
-  `}
-  }
+  width: fit-content;
+  color: ${(props) => props.color} !important;
+  ${({ isSelected, theme }) => isSelected && `background: ${colors[theme as keyof typeof colors].accentBackground};`}
 `;
 
 export default Span;

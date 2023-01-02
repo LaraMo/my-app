@@ -1,15 +1,21 @@
-import React from "react";
-import Text from "./Text";
+import React from 'react';
+import Text from './Text';
 
-type IProps = {
+/**
+ * Interface
+ */
+interface TitleProps {
   children: string;
   color?: string;
-  style?: any;
-};
-const Title = (props: IProps) => {
-  const { color, children, style } = props;
+  style?: unknown;
+}
+/**
+ * Immutable props - check TitleProps for more details.
+ * @returns
+ */
+const Title = ({ color, children, style }: TitleProps) => {
   return (
-    <Text style={style} color={color} bold size="5vh">
+    <Text style={style} color={color} isBold size="3vh">
       {children}
     </Text>
   );
