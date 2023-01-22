@@ -105,6 +105,7 @@ const RightSide = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 `;
 const Langs = styled.div`
   display: flex;

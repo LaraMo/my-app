@@ -70,10 +70,15 @@ const Section = styled.section<{ background: string }>`
     height: unset; // components will take their natural height
     padding: 10px;
   }
+  @media only screen and (max-width: 450px) {
+    padding: 0;
+  }
   // the about me section will have a max width
   &:first-child {
     > div {
       background: ${(props) => props.background};
+      border-radius: 6px;
+      padding: 10px;
       ${sharedShadowStyle};
       max-width: 650px;
     }

@@ -60,10 +60,11 @@ const Card = ({ title, img, desc, link, startDate, endDate, emoji }: CardProps) 
 const Div = styled.div<{ emoji?: string; theme: string }>`
   ${sharedShadowStyle}
   align-items: center;
-  background: ${(props) => colors[props.theme as keyof typeof colors].background};
+  background: ${(props) => colors[props.theme as keyof typeof colors].cardBackground};
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  display: flex;
+  margin-bottom: 15px;
   pointer-events: auto;
   transition: all 150ms ease-in-out;
   transform: scale(1);
@@ -80,6 +81,9 @@ const Div = styled.div<{ emoji?: string; theme: string }>`
     transform: scale(1.15);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1;
+  }
+  @media only screen and (max-width: 500px) {
+    margin-bottom: 5px;
   }
 
   ${({ emoji }) =>
