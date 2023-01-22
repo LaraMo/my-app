@@ -22,6 +22,8 @@ export const colors = {
     dateAccent: 'cadetblue',
     border: 'black',
     icon: '💜',
+    shadow1: 'rgba(50, 50, 93, 0.25)',
+    shadow2: 'rgba(0, 0, 0, 0.3)',
   },
   dark: {
     parallax: `linear-gradient(
@@ -46,6 +48,8 @@ export const colors = {
     dateAccent: 'aquamarine',
     border: `lightgray`,
     icon: '💙',
+    shadow1: 'rgba(230, 230, 230, 0.25)',
+    shadow2: 'rgba(255, 255, 255, 0.5)',
   },
   christmas: {
     parallax: `linear-gradient(
@@ -57,7 +61,7 @@ export const colors = {
       #2b0000 78%,
       #000000 100%
     )`,
-    primary: '#ff0000',
+    primary: '#751717',
     secondary: '#ba0c0c',
     tertiary: '#751717',
     quaternary: '#5c0000',
@@ -69,6 +73,8 @@ export const colors = {
     dateAccent: '#A8C256',
     border: `lightgray`,
     icon: '❤️',
+    shadow1: 'rgba(230, 230, 230, 0.25)',
+    shadow2: 'rgba(255, 255, 255, 0.5)',
   },
   easter: {
     parallax: `linear-gradient(
@@ -81,8 +87,7 @@ export const colors = {
       rgb(121, 147, 81, 0.6) 90%,
       rgb(121, 147, 81, 1) 100%
     )`,
-    primary: '#f9ceee',
-    secondary: '#e0cdff',
+    primary: 'rgba(220,249,168, 0.2)',
     tertiary: '#c1f0fb',
     quaternary: '#dcf9a8',
     text: '#142F43',
@@ -93,5 +98,7 @@ export const colors = {
     dateAccent: 'rgb(121, 147, 81) ',
     border: `lightgray`,
     icon: '🧡',
+    shadow1: 'rgba(50, 50, 93, 0.25)',
+    shadow2: 'rgba(0, 0, 0, 0.3)',
   },
 };

@@ -7,8 +7,7 @@ export interface ThemeProps {
 /**
  * Shared Text Style
  */
-export interface SharedTextStyleProps {
-  theme: 'light' | 'dark' | 'christmas' | 'easter';
+export interface SharedTextStyleProps extends ThemeProps {
   color?: string;
   size?: string;
   isBold?: string;

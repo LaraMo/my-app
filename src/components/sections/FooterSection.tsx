@@ -50,7 +50,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   gap: 15px;
   text-align: center;
-  padding: 10px;
+  padding-bottom: 10px;
 `;
 
 const Link = styled.a`

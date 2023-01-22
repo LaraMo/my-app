@@ -27,5 +27,6 @@ export const sharedSectionStyle = () => css`
  * @returns
  */
 export const sharedShadowStyle = () => css`
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  // todo make this theme supported
+  box-shadow: hsla(0, 0%, 0%, 0.2) -1rem 13px 27px -5px, hsla(0, 0%, 0%, 0.2) 0px 8px 16px -8px;
 `;

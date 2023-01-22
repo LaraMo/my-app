@@ -7,6 +7,7 @@ import Title from '../atoms/Title';
 import { colors } from '../../styles/colors';
 import Link from '../atoms/Link';
 import { ThemeContext } from '../../context/themeContext';
+import { sharedShadowStyle } from '../../styles/shared';
 
 /**
  * Interface
@@ -33,7 +34,7 @@ const Card = ({ title, img, desc, link, startDate, endDate, emoji }: CardProps) 
   const { t } = useTranslation();
 
   return (
-    <Div emoji={emoji}>
+    <Div theme={theme} className="card" emoji={emoji}>
       <img alt="logo" width="120px" height="120px" src={img} />
       <Emoji>{emoji}</Emoji>
       <Content>
@@ -56,19 +57,31 @@ const Card = ({ title, img, desc, link, startDate, endDate, emoji }: CardProps) 
 /**
  * Styled Components
  */
-const Div = styled.div<{ emoji?: string }>`
+const Div = styled.div<{ emoji?: string; theme: string }>`
+  ${sharedShadowStyle}
+  align-items: center;
+  background: ${(props) => colors[props.theme as keyof typeof colors].background};
   display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-  position: relative;
-  @media only screen and (max-width: 500px) {
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    > img {
-      display: ${(props) => (props.emoji ? 'none' : 'unset')};
-    }
+  flex-direction: column;
+  display: flex;
+  pointer-events: auto;
+  transition: all 150ms ease-in-out;
+  transform: scale(1);
+  padding: 1.5rem;
+  width: 200px;
+  &:nth-child(even) {
+    transform: translateY(8px);
   }
+
+  &:nth-child(n) {
+    transform: rotate(-5deg);
+  }
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
   ${({ emoji }) =>
     emoji &&
     ` 
@@ -91,14 +104,11 @@ const Desc = styled(Text)`
 
 const Content = styled.div`
   flex: 3;
-  padding-left: 20px;
-  @media only screen and (max-width: 500px) {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    text-align: center;
-  }
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  text-align: center;
 `;
 
 const TextContainer = styled.div`
@@ -107,11 +117,6 @@ const TextContainer = styled.div`
 `;
 
 const LinkContent = styled.div`
-  align-items: center;
-  display: flex;
-  @media only screen and (max-width: 500px) {
-    justify-content: center;
-  }
   > svg {
     padding-right: 5px;
   }

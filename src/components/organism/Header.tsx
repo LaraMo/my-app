@@ -85,6 +85,7 @@ const Parallax = styled.div<{ theme: string }>`
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 500px;
+  margin-bottom: 30px;
   width: 100%;
 `;
 
@@ -93,6 +94,7 @@ const Container = styled.div`
   display: flex;
   height: 100vh;
   justify-content: center;
+  padding: 0 20px;
   @media only screen and (max-width: 500px) {
     flex-direction: column-reverse;
   }
