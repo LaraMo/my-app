@@ -29,11 +29,12 @@ const Page = ({ children }: PageProps) => {
  */
 const Container = styled.div<{ theme: 'light' | 'dark' | 'christmas' | 'easter' }>`
   align-items: center;
-  background: ${(props) => colors[props.theme as keyof typeof colors].background};
+  background: ${(props) =>
+    props.theme === 'dark' ? 'transparent' : colors[props.theme as keyof typeof colors].background};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 100 %;
 `;
 
 export default Page;

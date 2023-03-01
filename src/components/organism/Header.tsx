@@ -14,6 +14,7 @@ import Superwoman from '../atoms/Superwoman';
 import Snow from '../atoms/Snow';
 import { themeList } from '../../utils/const';
 import 'react-toastify/dist/ReactToastify.css';
+import * as THREE from 'three';
 
 /**
  * Interface
@@ -33,6 +34,161 @@ const Header = ({ lang, handleChangeLanguage }: HeaderProps) => {
    */
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
+
+  // dark theme will use three.js to render
+  // if(theme === "dark"){
+
+  // }
+  // Setup
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({
+    //@ts-ignore
+    canvas: document.querySelector('#bg'),
+  });
+
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.position.z = 30;
+  camera.position.x = -3;
+
+  renderer.render(scene, camera);
+
+  // Lights
+  const pointLight = new THREE.PointLight(0xffffff);
+  pointLight.position.set(5, 5, 5);
+
+  const ambientLight = new THREE.AmbientLight(0xffffff);
+  scene.add(pointLight, ambientLight);
+
+  /**
+   * Add stars
+   */
+  function addStar() {
+    const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const star = new THREE.Mesh(geometry, material);
+
+    const [x, y, z] = Array(3)
+      .fill('')
+      .map(() => THREE.MathUtils.randFloatSpread(100));
+
+    star.position.set(x, y, z);
+    scene.add(star);
+  }
+
+  // @ts-ignore
+  Array(200).fill('').forEach(addStar);
+
+  const themeArray = {
+    dark: 'https://raw.githubusercontent.com/fireship-io/threejs-scroll-animation-demo/main/space.jpg',
+  };
+  // Background
+
+  // @ts-ignore
+  const spaceTexture = new THREE.TextureLoader().load(themeArray[theme]);
+  scene.background = spaceTexture;
+
+  /**
+   * Boxes
+   */
+  const boxes = [
+    'https://hips.hearstapps.com/hmg-prod/images/cup-of-coffee-on-colored-background-royalty-free-image-875681938-1543862983.jpg?crop=0.680xw:1.00xh;0.164xw,0&resize=1200:*',
+  ];
+
+  const boxMeshArray: any[] = [];
+  const addBoxesToScene = () => {
+    boxes.forEach((box, i) => {
+      const boxMesh = new THREE.Mesh(
+        new THREE.BoxGeometry(3, 3, 3),
+        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(box) })
+      );
+
+      boxMesh.position.z = i;
+      boxMesh.position.x = 8;
+      boxMesh.position.y = 2;
+      boxMeshArray.push(boxMesh);
+      scene.add(boxMesh);
+    });
+  };
+
+  addBoxesToScene();
+  const moonTexture = new THREE.TextureLoader().load(
+    'https://images.unsplash.com/photo-1519806390608-acf7ef9c8d1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80'
+  );
+
+  const moon = new THREE.Mesh(
+    new THREE.SphereGeometry(3, 32, 32),
+    new THREE.MeshStandardMaterial({
+      map: moonTexture,
+    })
+  );
+
+  moon.position.x = -50;
+  moon.position.y = -10;
+  moon.position.z = 3;
+
+  scene.add(moon);
+
+  const earthTexture = new THREE.TextureLoader().load(
+    'https://images.unsplash.com/photo-1572615318109-4b6595947181?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80'
+  );
+
+  const earth = new THREE.Mesh(
+    new THREE.SphereGeometry(3, 32, 32),
+    new THREE.MeshStandardMaterial({
+      map: earthTexture,
+    })
+  );
+
+  earth.position.x = -100;
+  earth.position.y = -10;
+  earth.position.z = -3;
+
+  scene.add(earth);
+
+  // Scroll Animation
+
+  function moveCamera() {
+    const t = document.body.getBoundingClientRect().top;
+    moon.rotation.x += 0.05;
+    moon.rotation.y += 0.075;
+    moon.rotation.z += 0.05;
+
+    earth.rotation.x += 0.05;
+    earth.rotation.y += 0.075;
+    earth.rotation.z += 0.05;
+
+    camera.position.z = t * -0.01;
+    camera.position.x = t * -0.0002;
+    camera.rotation.y = t * -0.0002;
+  }
+
+  document.body.onscroll = moveCamera;
+  moveCamera();
+
+  // Animation Loop
+
+  function animate() {
+    requestAnimationFrame(animate);
+    boxMeshArray.forEach((x, i) => {
+      x.rotation.x += 0.01;
+      x.rotation.y += 0.005;
+      x.rotation.z += 0.01;
+    });
+
+    moon.rotation.x += 0.01;
+    moon.rotation.y += 0.005;
+    moon.rotation.z += 0.01;
+
+    earth.rotation.x += 0.005;
+    earth.rotation.y += 0.0075;
+    earth.rotation.z += 0.05;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
 
   return (
     <Parallax theme={theme}>
@@ -60,8 +216,8 @@ const Header = ({ lang, handleChangeLanguage }: HeaderProps) => {
             </Span>
           </Langs>
           <IconContainer theme={theme}>
-            <ThemeIcon themeValue="light" svg={<BsFillSunFill />} />
             <ThemeIcon themeValue="dark" svg={<BsMoonFill />} />
+            <ThemeIcon themeValue="light" svg={<BsFillSunFill />} />
             <ThemeIcon themeValue="christmas" svg={<BsFillTreeFill />} />
             <ThemeIcon themeValue="easter" svg={<GiRabbitHead />} />
           </IconContainer>

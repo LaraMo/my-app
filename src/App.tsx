@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { ProSidebarProvider } from 'react-pro-sidebar';
 import Page from './components/atoms/Page';
 import Header from './components/organism/Header';
 import { ThemeProvider } from './context/themeContext';
@@ -9,8 +8,8 @@ import Content from './components/sections/ContentSection';
 import Footer from './components/sections/FooterSection';
 import './trans/i18n.ts';
 import 'animate.css/animate.min.css';
-import './App.scss';
 
+import './App.scss';
 function App() {
   /**
    * State
@@ -38,8 +37,8 @@ function App() {
   };
 
   return (
-    <ThemeProvider>
-      <ProSidebarProvider>
+    <main style={{ position: 'absolute', width: '100%', top: 0, left: 0 }}>
+      <ThemeProvider>
         <Page>
           <Header lang={lang} handleChangeLanguage={handleChangeLanguage} />
           <Container>
@@ -47,8 +46,8 @@ function App() {
             <Footer />
           </Container>
         </Page>
-      </ProSidebarProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </main>
   );
 }
 

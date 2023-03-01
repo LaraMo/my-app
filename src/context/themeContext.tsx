@@ -11,7 +11,7 @@ type ThemeContextProps = {
  * Init value
  */
 const init = {
-  theme: 'light' as 'light' | 'dark' | 'christmas' | 'easter',
+  theme: 'dark' as 'light' | 'dark' | 'christmas' | 'easter',
   handleSetTheme: (theme: 'light' | 'dark' | 'christmas' | 'easter') => null, //set theme to inverse of current value and save changes in local storage
 };
 //define the user context
